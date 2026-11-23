@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Unwind</title>
+    <style>
+        :root {
+            --bg-color: #fcfcfc;
+            --text-color: #1a1a1a;
+            --card-bg: #ffffff;
+            --border-color: #e5e5e5;
+            --accent-color: #2563eb;
+            --muted-text: #666666;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #f0f0f0;
+                --card-bg: #1e1e1e;
+                --border-color: #2e2e2e;
+                --accent-color: #60a5fa;
+                --muted-text: #a0a0a0;
+            }
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 4rem;
+        }
+        header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.025em;
+        }
+        .meta {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+        }
+        h2 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.015em;
+            color: var(--accent-color);
+        }
+        p, li {
+            font-size: 1.05rem;
+        }
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .highlight-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+        }
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Privacy Policy — Unwind</h1>
+    <div class="meta">
+        <strong>Effective Date:</strong> 18 November 2026 &bull;
+        <strong>Application ID:</strong> <code>com.kindcircuit.unwind</code>
+    </div>
+</header>
+
+<section>
+    <h2>Who Publishes This App</h2>
+    <div class="highlight-card">
+        <p><strong>App Name:</strong> Unwind</p>
+        <p><strong>Publisher:</strong> Amal Sasikumar</p>
+        <p><strong>Privacy &amp; Support Contact:</strong> <a href="mailto:dev.kindcircuit@gmail.com">dev.kindcircuit@gmail.com</a></p>
+        <p>This privacy policy governs your use of the Unwind offline music player Android application.</p>
+    </div>
+</section>
+
+<section>
+    <h2>Core Principle: Local &amp; Offline First</h2>
+    <p>Unwind is built from the ground up as a private, offline-first music player. Your personal audio files, listening habits, and metadata belong exclusively to you and stay on your device.</p>
+</section>
+
+<section>
+    <h2>No Ads, No Tracking, and No Sale of Personal Data</h2>
+    <p>We respect your privacy unconditionally:</p>
+    <ul>
+        <li><strong>No Commercial Advertisements:</strong> Unwind is completely ad-free. It does not access or collect Google Advertising IDs (AAID).</li>
+        <li><strong>No Analytics or Tracking SDKs:</strong> We do not embed any third-party analytics, behavioral tracking, or crash-telemetry trackers (such as Firebase Analytics, Facebook SDK, or Adjust).</li>
+        <li><strong>No Sale or Sharing of Data:</strong> We never sell, monetize, rent, or transfer your personal data, music files, or usage habits to data brokers, marketing firms, or third parties.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Information the App Accesses and Stores On-Device</h2>
+    <p>All core functions operate locally inside Android's secure application sandbox:</p>
+    <ul>
+        <li><strong>Local Audio Files:</strong> The app accesses audio files from folders you select via Android's system folder picker (Storage Access Framework) or standard device media permissions to build your offline music library and play songs. Your music files are never uploaded to any server.</li>
+        <li><strong>On-Device Storage:</strong> Playlists, favorites, listening statistics, lyric drafts, lyric versions, equalizer presets, and player preferences are stored entirely locally on your device.</li>
+        <li><strong>Recent Searches:</strong> The Search feature keeps up to eight recent music search terms locally on your device to display quick suggestions. You can clear them at any time using the "Clear all" button.</li>
+        <li><strong>Tag and Artwork Editing:</strong> Edits to tags and embedded album art are written directly to the audio files you choose. When saving lyrics, they can be embedded directly in the file or saved to an LRC sidecar file in the same folder. You can search for album art in your web browser and select an image from your device to embed into the audio file.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Android Permissions and Their Specific Purpose</h2>
+    <p>Unwind requests only the minimal permissions required to function as an offline music player:</p>
+    <ul>
+        <li><strong>Storage / Media Audio (<code>READ_MEDIA_AUDIO</code>, <code>READ_EXTERNAL_STORAGE</code>):</strong> Used solely to discover and play local audio tracks on your device.</li>
+        <li><strong>Foreground Service for Media Playback (<code>FOREGROUND_SERVICE_MEDIA_PLAYBACK</code>):</strong> Required to keep audio playing smoothly in the background when you turn off your screen or switch to other apps.</li>
+        <li><strong>Notifications (<code>POST_NOTIFICATIONS</code>):</strong> Used on Android 13+ exclusively to display active playback controls (Play, Pause, Skip, Album Art) in your notification shade and lock screen.</li>
+        <li><strong>Legacy Storage Write (<code>WRITE_EXTERNAL_STORAGE</code>, maxSdkVersion 28):</strong> On Android 9 and older only, used to save user-exported ringtone clips to the system Ringtones folder.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Optional Online Features (User-Initiated Only)</h2>
+    <p>Online queries occur strictly when explicitly initiated by the user and transmit only the minimal text query needed:</p>
+    <ul>
+        <li><strong>Online Lyrics (LRCLIB):</strong> When you choose to search for lyrics online, the track title and artist name are sent to LRCLIB via an encrypted HTTPS connection to retrieve matching lyric lines. Requests include an application contact header. Your audio file is never transmitted.</li>
+        <li><strong>Browser Search:</strong> If you tap "Search in browser" for lyrics or album art, the song or album title and artist are passed to your external web browser as a standard web search query.</li>
+    </ul>
+    <p>External services receive standard HTTP connection metadata (IP address, time) required to deliver web responses and handle that metadata under their respective privacy policies.</p>
+</section>
+
+<section>
+    <h2>On-Device Lyric Translation</h2>
+    <p>Optional lyric translation uses Google's on-device ML Kit translation and language identification libraries. Lyric text and translation output are processed entirely on your device and are never sent to Google servers. ML Kit libraries may send standard diagnostic and performance metrics to Google for service maintenance and translation model downloads according to <a href="https://developers.google.com/ml-kit/terms" target="_blank" rel="noopener">Google's ML Kit Terms</a>.</p>
+</section>
+
+<section>
+    <h2>Backups and Exports</h2>
+    <p>If you create an app backup, it contains your playlists, favorites, lyric versions, listening statistics, and app settings. It does not contain music audio files. The backup file is saved to the local folder of your choice.</p>
+    <p>Standard Android cloud backup and device transfer include eligible preferences and database records, while excluding private audio recovery files and restore journals.</p>
+</section>
+
+<section>
+    <h2>Data Retention and Deletion</h2>
+    <p>All data remains on your device for as long as the app is installed. You can delete your data at any time by:</p>
+    <ul>
+        <li>Using in-app clear controls (such as "Clear listening history" or removing playlists).</li>
+        <li>Clearing the app's data in Android Settings &rarr; Apps &rarr; Unwind &rarr; Storage.</li>
+        <li>Uninstalling the application from your device (which completely erases all sandboxed app data).</li>
+    </ul>
+    <p>Before modifying embedded tags or artwork, Unwind preserves a private original copy. You can manage, restore, export, or delete these copies anytime under Settings &rarr; Audio edit recovery.</p>
+</section>
+
+<section>
+    <h2>Children's Privacy</h2>
+    <p>Unwind is a general-audience application and does not knowingly collect, store, or solicit personal information from children under the age of 13 (or under 16 in the European Economic Area). If you are a parent or guardian and have any concerns, please contact us at <a href="mailto:dev.kindcircuit@gmail.com">dev.kindcircuit@gmail.com</a>.</p>
+</section>
+
+<section>
+    <h2>Security</h2>
+    <p>All optional external network requests use encrypted HTTPS (TLS 1.3/1.2) connections. Your on-device data is protected within Android's sandboxed storage environment.</p>
+</section>
+
+<section>
+    <h2>Changes to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect improvements or changes in our app. Any updates will be posted to this page with a revised "Effective Date" at the top.</p>
+</section>
+
+<section>
+    <h2>Contact Us</h2>
+    <p>If you have any questions or feedback regarding this privacy policy or your data, please contact:</p>
+    <p><strong>Email:</strong> <a href="mailto:dev.kindcircuit@gmail.com">dev.kindcircuit@gmail.com</a></p>
+</section>
+
+</body>
+</html>
