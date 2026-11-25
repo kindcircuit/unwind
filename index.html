@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unwind — Offline Music &amp; MP3 Player for Android (100% Ad-Free)</title>
+    <meta name="description" content="Unwind is a free, 100% ad-free offline music and MP3 player for Android. Search songs by lyrics, translate lyrics on-device, cut MP3 ringtones, customize your library, and view private listening stats.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://kindcircuit.github.io/unwind/">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Unwind by KindCircuit">
+    <meta property="og:title" content="Unwind — Offline Music &amp; MP3 Player (100% Ad-Free)">
+    <meta property="og:description" content="Play your local MP3, FLAC, and audio files offline with zero ads, smart lyric search, on-device translation, 9:16 story cards, and MP3 ringtone cutter.">
+    <meta property="og:url" content="https://kindcircuit.github.io/unwind/">
+    <meta property="og:image" content="https://kindcircuit.github.io/unwind/unwind-logo.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Unwind — Offline Music &amp; MP3 Player (100% Ad-Free)">
+    <meta name="twitter:description" content="Clean, lightweight offline music player for Android with zero ads, smart lyrics search, on-device translation, story cards, and MP3 ringtone maker.">
+    <meta name="twitter:image" content="https://kindcircuit.github.io/unwind/unwind-logo.png">
+
+    <!-- App Logo Favicon -->
+    <link rel="icon" type="image/png" href="unwind-logo.png">
+    <link rel="apple-touch-icon" href="unwind-logo.png">
+
+    <!-- Structured Data for Google Search -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Unwind: Offline Music Player",
+      "applicationCategory": "MusicApplication",
+      "operatingSystem": "Android",
+      "url": "https://kindcircuit.github.io/unwind/",
+      "image": "https://kindcircuit.github.io/unwind/unwind-logo.png",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.kindcircuit.unwind",
+      "description": "A clean, lightweight, 100% ad-free offline music and MP3 player for Android with lyric-line search, on-device lyric translation, 9:16 lyric story cards, A-B loop MP3 cutter, customizable single-screen library, and private listening stats.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "KindCircuit",
+        "email": "dev.kindcircuit@gmail.com"
+      },
+      "featureList": [
+        "100% Ad-Free Offline Playback (MP3, FLAC, AAC, WAV, OGG, M4A, OPUS)",
+        "Search Songs by Lyrics and On-Device Lyric Translation",
+        "Pinch-to-Zoom Synced Lyrics and Bluetooth Lyric Sync Offset",
+        "A-B Loop and MP3 Clip Cutter / Ringtone Maker",
+        "Shareable 9:16 Lyric Story Cards and Private On-Device Listening Recap Cards",
+        "Customizable Single-Screen Library with Folder Filter and M3U Playlists",
+        "Modern Dark, True Black AMOLED, and Clean Light Themes plus Home Screen Widget",
+        "Sleep Timer Fade-Out, Gapless Playback, Crossfade, ReplayGain, Smart Shuffle, MP3/FLAC Tag Editor, and 5-Band Equalizer"
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --surface-color: #ffffff;
+            --surface-muted: #f1f5f9;
+            --text-color: #0f172a;
+            --muted-text: #475569;
+            --border-color: #e2e8f0;
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-soft: rgba(37, 99, 235, 0.10);
+            --badge-bg: #e0f2fe;
+            --badge-text: #0369a1;
+            --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0a0a0c;
+                --surface-color: #141418;
+                --surface-muted: #1b1b21;
+                --text-color: #f8fafc;
+                --muted-text: #a1a1aa;
+                --border-color: #27272f;
+                --accent-color: #60a5fa;
+                --accent-hover: #93c5fd;
+                --accent-soft: rgba(96, 165, 250, 0.14);
+                --badge-bg: rgba(96, 165, 250, 0.14);
+                --badge-text: #93c5fd;
+                --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        /* Navigation */
+        .topbar {
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--surface-color);
+        }
+
+        .topbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.9rem 0;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--text-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.015em;
+        }
+
+        .brand:hover {
+            text-decoration: none;
+        }
+
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .hero-logo {
+            width: 96px;
+            height: 96px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 18px rgba(15, 23, 42, 0.16));
+            display: block;
+            margin: 0 auto 1.25rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            color: var(--muted-text);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4rem 0 3rem;
+            text-align: center;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 4.5vw, 3.1rem);
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin: 0 auto 1rem;
+            max-width: 760px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.12rem;
+            color: var(--muted-text);
+            max-width: 680px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.85rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.45rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.12s ease, background-color 0.12s ease;
+        }
+
+        .btn:hover {
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .btn-primary {
+                color: #09111f;
+            }
+        }
+
+        .btn-secondary {
+            background-color: var(--surface-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .formats-strip {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            color: var(--muted-text);
+            font-size: 0.88rem;
+        }
+
+        .format-tag {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.2rem 0.6rem;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.03em;
+        }
+
+        /* Sections */
+        section {
+            padding: 2.5rem 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-heading h2 {
+            font-size: 1.75rem;
+            letter-spacing: -0.02em;
+            margin: 0 0 0.45rem;
+        }
+
+        .section-heading p {
+            color: var(--muted-text);
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.15rem;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.4rem;
+            box-shadow: var(--shadow);
+        }
+
+        .card-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-color);
+            margin-bottom: 0.45rem;
+        }
+
+        .card h3 {
+            font-size: 1.12rem;
+            margin: 0 0 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted-text);
+            font-size: 0.96rem;
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: grid;
+            gap: 0.9rem;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.2rem 1.35rem;
+        }
+
+        .faq-item h3 {
+            margin: 0 0 0.35rem;
+            font-size: 1.04rem;
+        }
+
+        .faq-item p {
+            margin: 0;
+            color: var(--muted-text);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0 2.75rem;
+            margin-top: 1.5rem;
+            color: var(--muted-text);
+            font-size: 0.92rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="container topbar-inner">
+        <a class="brand" href="https://kindcircuit.github.io/unwind/">
+            <img class="brand-icon" src="unwind-logo.png" alt="Unwind app logo" width="236" height="236">
+            <span>Unwind</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+            <a href="#features">Features</a>
+            <a href="#faq">FAQ</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="mailto:dev.kindcircuit@gmail.com">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <img class="hero-logo" src="unwind-logo.png" alt="Unwind: Offline Music Player logo" width="236" height="236">
+            <div class="pill">100% Free &bull; Zero Ads &bull; Offline First</div>
+            <h1>Your music, your phone &mdash; offline and completely ad-free.</h1>
+            <p class="hero-subtitle">
+                Unwind is a clean, lightweight offline music and MP3 player for Android.
+                Search songs by lyrics, translate foreign lyrics on your device, cut MP3 ringtones,
+                customize your single-screen library, and view private listening stats without pop-ups or tracking.
+            </p>
+            <div class="cta-row">
+                <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.kindcircuit.unwind" target="_blank" rel="noopener">
+                    Get Unwind on Google Play
+                </a>
+                <a class="btn btn-secondary" href="privacy-policy.html">
+                    Read Privacy Policy
+                </a>
+            </div>
+            <div class="formats-strip" aria-label="Supported audio formats">
+                <span class="format-tag">MP3</span>
+                <span class="format-tag">FLAC</span>
+                <span class="format-tag">AAC</span>
+                <span class="format-tag">WAV</span>
+                <span class="format-tag">OGG</span>
+                <span class="format-tag">M4A</span>
+                <span class="format-tag">OPUS</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Built for people who keep their own music</h2>
+                <p>No accounts, no ad banners, and no audio uploads &mdash; just thoughtful tools for your local collection.</p>
+            </div>
+            <div class="grid">
+                <article class="card">
+                    <span class="card-label">Zero Distractions</span>
+                    <h3>100% Ad-Free &amp; Offline</h3>
+                    <p>Plays audio files stored on your Android device with no banner ads, no video pop-ups, and no subscriptions. Powered by Android Media3 ExoPlayer.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">Smart Lyrics</span>
+                    <h3>Search &amp; On-Device Translation</h3>
+                    <p>Search songs by remembered lyric lines, pinch-to-zoom synced lyrics (14sp&ndash;40sp), adjust Bluetooth sync delay, edit .lrc/ID3 lyrics, and translate foreign lyrics on-device.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">Clip &amp; Practice</span>
+                    <h3>A-B Loop &amp; MP3 Ringtone Maker</h3>
+                    <p>Repeat any chorus, verse, or solo with A-B loop, cut frame-aligned clips from MP3 tracks, and open Android&rsquo;s system ringtone picker to set custom ringtones.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">Share &amp; Reflect</span>
+                    <h3>9:16 Story Cards &amp; Private Stats</h3>
+                    <p>Turn favorite song lines into shareable 9:16 lyric story cards in 4 styles, and view your listening time, top songs, and recap cards stored privately on-device.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">Your Layout</span>
+                    <h3>Customizable Single-Screen Library</h3>
+                    <p>Reorder sections, show or hide categories, pin favorite playlists, filter music folders so voice notes stay out, and import or export .M3U / .M3U8 playlists.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-label">Themes &amp; Tools</span>
+                    <h3>3 Themes, Widget &amp; Everyday Controls</h3>
+                    <p>Switch between Modern Dark (Album Aura), True Black (AMOLED), and Clean Light. Includes a Home Screen Widget, Sleep Timer fade-out, Gapless, Crossfade, ReplayGain, Smart Shuffle, MP3/FLAC Tag Editor, local backup, and a built-in 5-band equalizer.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Frequently Asked Questions</h2>
+                <p>Clear answers about offline playback, privacy, and how Unwind works.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Does Unwind work without Wi-Fi or mobile data?</h3>
+                    <p>Yes. Unwind is built for local audio files already stored on your phone. Playback, playlists, listening stats, A-B loop, and library tools work completely offline. An internet connection is only used if you choose to search public lyrics online or download an optional on-device translation language model.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does Unwind show ads or require a subscription?</h3>
+                    <p>No. Unwind is 100% free with zero ads, no pop-ups, and no subscriptions.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can Unwind download or stream copyrighted songs?</h3>
+                    <p>No. Unwind is strictly a local offline media player for audio files already on your device. It does not download, stream, or distribute music.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Are my music files or listening stats uploaded anywhere?</h3>
+                    <p>Never. Your audio files, playlists, and listening statistics stay on your phone inside Android&rsquo;s app storage. Read the full <a href="privacy-policy.html">Privacy Policy</a> for complete details.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-inner">
+        <div>
+            <strong>Unwind</strong> by <strong>KindCircuit</strong> &bull; <code>com.kindcircuit.unwind</code>
+        </div>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="https://play.google.com/store/apps/details?id=com.kindcircuit.unwind" target="_blank" rel="noopener">Google Play</a>
+            <a href="mailto:dev.kindcircuit@gmail.com">dev.kindcircuit@gmail.com</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
