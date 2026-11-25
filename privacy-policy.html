@@ -108,7 +108,7 @@
 
 <section>
     <h2>Core Principle: Local &amp; Offline First</h2>
-    <p>Unwind is built from the ground up as a private, offline-first music player. Your personal audio files, listening habits, and metadata belong exclusively to you and stay on your device.</p>
+    <p>Unwind is built from the ground up as a private, offline-first music player with optional online lyric tools. Your personal audio files, listening habits, and metadata belong exclusively to you and stay on your device.</p>
 </section>
 
 <section>
@@ -116,7 +116,7 @@
     <p>We respect your privacy unconditionally:</p>
     <ul>
         <li><strong>No Commercial Advertisements:</strong> Unwind is completely ad-free. It does not access or collect Google Advertising IDs (AAID).</li>
-        <li><strong>No Analytics or Tracking SDKs:</strong> We do not embed any third-party analytics, behavioral tracking, or crash-telemetry trackers (such as Firebase Analytics, Facebook SDK, or Adjust).</li>
+        <li><strong>No Commercial Analytics or Ad Trackers:</strong> We do not embed commercial analytics, advertising trackers, or user profiling SDKs (such as Google Analytics for Firebase, Facebook SDK, or Adjust). As noted below, optional on-device ML Kit lyric translation includes Google's standard technical diagnostics.</li>
         <li><strong>No Sale or Sharing of Data:</strong> We never sell, monetize, rent, or transfer your personal data, music files, or usage habits to data brokers, marketing firms, or third parties.</li>
     </ul>
 </section>
@@ -155,7 +155,7 @@
 
 <section>
     <h2>On-Device Lyric Translation</h2>
-    <p>Optional lyric translation uses Google's on-device ML Kit translation and language identification libraries. Lyric text and translation output are processed entirely on your device and are never sent to Google servers. ML Kit libraries may send standard diagnostic and performance metrics to Google for service maintenance and translation model downloads according to <a href="https://developers.google.com/ml-kit/terms" target="_blank" rel="noopener">Google's ML Kit Terms</a>.</p>
+    <p>Optional lyric translation uses Google's on-device ML Kit translation and language identification libraries. Lyric text and translation output are processed entirely on your device and are never sent to Google servers. To perform translations, the libraries may contact Google servers to download language translation models. In accordance with Google's SDK requirements, ML Kit libraries automatically collect standard diagnostic, performance, and device metrics (such as API call latency, error codes, and device model) for service maintenance and reliability. For complete details, see <a href="https://developers.google.com/ml-kit/terms" target="_blank" rel="noopener">Google's ML Kit Terms</a> and <a href="https://developers.google.com/ml-kit/android-data-disclosure" target="_blank" rel="noopener">Google's ML Kit Data Disclosure</a>.</p>
 </section>
 
 <section>
